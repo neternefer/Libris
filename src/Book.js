@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Move from './Move'
+import * as BooksApi from './BooksAPI'
 
 class Book extends Component {
     state = {
@@ -11,10 +13,13 @@ class Book extends Component {
         }))
     }
 
-    changeShelf = (shelf) => {
-        this.setState(() => ({
-            shelf: shelf
-        }))
+    changeShelf = (e) => {
+        BooksApi.update(this.props.book, e.currentTarget.value)
+        .then((book ) => {
+            this.setState(() => ({
+                shelf: book.shelf
+            }))
+        })
     }
 
     render() {
@@ -25,15 +30,7 @@ class Book extends Component {
                     <div className="book-cover"
                         style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}>
                     </div>
-                    <div className="book-shelf-changer">
-                        <select>
-                            <option value="move" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                        </select>
-                    </div>
+                    <Move changeShelf={this.changeShelf} shelf={this.assignShelf}/>
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.autors}</div>
