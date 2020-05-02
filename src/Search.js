@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import SearchQuery from './SearchQuery'
+import SearchResult from './SearchResult'
 
 class Search extends Component {
     state = {
@@ -13,7 +15,10 @@ class Search extends Component {
 
     render() {
         return (
-            <input value={this.state.search} onChange={this.handleChange}></input>
+            <div className="search-books">
+                <SearchQuery className="search-books-bar" handleChange={this.handleChange}/>
+                <SearchResult className="search-books-results" books={this.props.books} search={this.state.search}/>
+            </div>
         )
     }
 }
