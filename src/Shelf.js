@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
+import Book from './Book'
 
 class Shelf extends Component {
-    render() {
-        const { category, books } = this.props;
-        return (
-            <div>
+    populateShelf = (shelf) => {
+        const shelfContent = this.props.books.filter((b) => (
+            b.shelf === shelf
+        ))
+        return shelfContent
+    }
 
+    render() {
+        const { shelf, shelfName } = this.props;
+        return (
+            <div className="bookshelf">
+                <h2 className="bookshelf-title">{shelfName}</h2>
+                  <div className="bookshelf-books">
+                    <ol className="books-grid">
+                        {this.populateShelf(shelf[0]).map((book) => (
+                            <li key={book.id}>
+                                <Book book={book} />
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </div>
         )
     }

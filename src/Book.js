@@ -5,12 +5,25 @@ class Book extends Component {
         shelf: ''
     }
 
+    assignShelf = (book) => {
+        this.setState(() => ({
+            shelf: book.shelf
+        }))
+    }
+
+    changeShelf = (shelf) => {
+        this.setState(() => ({
+            shelf: shelf
+        }))
+    }
+
     render() {
+        const { book } = this.props;
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover"
-                        style={{ width: 128, height: 193, backgroundImage: `${this.props.thumbnail}`}}>
+                        style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}>
                     </div>
                     <div className="book-shelf-changer">
                         <select>
@@ -22,8 +35,8 @@ class Book extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{this.props.title}</div>
-                <div className="book-authors">{this.props.autors.toString()}</div>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.autors}</div>
             </div>
         )
     }

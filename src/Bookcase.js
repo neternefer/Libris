@@ -7,7 +7,11 @@ class Bookcase extends Component {
         books: []
     }
 
-    shelves = ['currentlyReading', 'wantToRead', 'read']
+    shelves = [
+        {'currentlyReading': 'Currently Reading'},
+        {'wantToRead': 'Want To Read'},
+        {'read': 'Read'}
+    ]
 
     componentDidMount() {
         BooksAPI.getAll()
@@ -18,23 +22,17 @@ class Bookcase extends Component {
         })
     }
 
-    populateShelf = (shelf) => {
-        const shelfContent = this.state.books.filter((b) => (
-            b.shelf === shelf.shelf
-        ))
-        return shelfContent
-    }
 
     render() {
         return (
             <div className="list-books-content">
                 {/* {JSON.stringify(this.state.books[3])} */}
-                <Shelf className="bookshelf" shelf={this.shelves[0]}
-                content={this.populateShelf(this.shelves[0])}/>
-                <Shelf className="bookshelf" shelf={this.shelves[1]}
-                content={this.populateShelf(this.shelves[0])}/>
-                <Shelf className="bookshelf" shelf={this.shelves[2]}
-                content={this.populateShelf(this.shelves[0])}/>
+                {this.shelves.map((s, index) => (
+                    <Shelf key={index} shelf={Object.keys(s)}
+                    shelfName={s[Object.keys(s)]}
+                    books={this.state.books}
+                     />// content={this.populateShelf(Object.keys(s))}
+                ))}
             </div>
         )
     }
