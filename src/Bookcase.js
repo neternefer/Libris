@@ -22,7 +22,14 @@ class Bookcase extends Component {
         })
     }
 
-
+    rearrangeBooks = () => {
+        BooksAPI.getAll()
+        .then((books) => {
+            this.setState(() => ({
+            books: books
+        }))
+    })
+    }
     render() {
         return (
             <div className="list-books-content">
@@ -31,7 +38,8 @@ class Bookcase extends Component {
                     <Shelf key={index} shelf={Object.keys(s)}
                     shelfName={s[Object.keys(s)]}
                     books={this.state.books}
-                     />// content={this.populateShelf(Object.keys(s))}
+                    rearrangeBooks={this.rearrangeBooks}
+                    />
                 ))}
             </div>
         )

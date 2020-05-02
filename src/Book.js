@@ -20,6 +20,7 @@ class Book extends Component {
                 shelf: book.shelf
             }))
         })
+        this.props.rearrangeBooks()
     }
 
     render() {

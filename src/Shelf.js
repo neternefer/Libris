@@ -18,7 +18,8 @@ class Shelf extends Component {
                     <ol className="books-grid">
                         {this.populateShelf(shelf[0]).map((book) => (
                             <li key={book.id}>
-                                <Book book={book} />
+                                <Book book={book} rearrangeBooks={this.props.rearrangeBooks}
+                                books={this.props.books}/>
                             </li>
                         ))}
                     </ol>
