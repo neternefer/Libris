@@ -39,6 +39,7 @@ class Bookcase extends Component {
                     shelfName={s[Object.keys(s)]}
                     books={this.state.books}
                     rearrangeBooks={this.rearrangeBooks}
+                    shelves={this.shelves}
                     />
                 ))}
             </div>

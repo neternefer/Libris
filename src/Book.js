@@ -7,15 +7,9 @@ class Book extends Component {
         shelf: ''
     }
 
-    assignShelf = (book) => {
-        this.setState(() => ({
-            shelf: book.shelf
-        }))
-    }
-
     changeShelf = (e) => {
-        BooksApi.update(this.props.book, e.currentTarget.value)
-        .then((book ) => {
+        BooksApi.update(this.props.book, e.target.value)
+        .then((book) => {
             this.setState(() => ({
                 shelf: book.shelf
             }))
@@ -31,7 +25,7 @@ class Book extends Component {
                     <div className="book-cover"
                         style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}>
                     </div>
-                    <Move changeShelf={this.changeShelf} shelf={this.assignShelf}/>
+                    <Move changeShelf={this.changeShelf} book={book} shelves={this.props.shelves}/>
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.autors}</div>

@@ -19,7 +19,8 @@ class Shelf extends Component {
                         {this.populateShelf(shelf[0]).map((book) => (
                             <li key={book.id}>
                                 <Book book={book} rearrangeBooks={this.props.rearrangeBooks}
-                                books={this.props.books}/>
+                                books={this.props.books}
+                            />
                             </li>
                         ))}
                     </ol>
