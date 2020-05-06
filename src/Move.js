@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
 class Move extends Component {
-    handleClick = (e) => {
+    handleChange = (e) => {
         this.props.changeShelf(e);
     }
 
     render() {
         return (
             <div className="book-shelf-changer">
-                <select value={this.props.book.shelf} onChange={this.handleClick}>
+                <select value={this.props.book.shelf} onChange={this.handleChange}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

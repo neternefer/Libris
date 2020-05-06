@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Move from './Move'
 import * as BooksApi from './BooksAPI'
 
+/** <Book book={book} update={this.props.update} */
 class Book extends Component {
     state = {
         shelf: ''
@@ -14,7 +15,7 @@ class Book extends Component {
                 shelf: book.shelf
             }))
         })
-        this.props.rearrangeBooks()
+       //update func should go here
     }
 
     render() {
@@ -25,7 +26,7 @@ class Book extends Component {
                     <div className="book-cover"
                         style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}>
                     </div>
-                    <Move changeShelf={this.changeShelf} book={book} shelves={this.props.shelves}/>
+                    <Move changeShelf={this.changeShelf} book={book} />
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.autors}</div>
