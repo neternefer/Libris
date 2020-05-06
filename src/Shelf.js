@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import Book from './Book'
 
+/**<Shelf name={Object.keys(shelf)}
+                            header={Object.values(shelf)}
+                            books={this.state.books}
+                            update={this.updateBooks}/> */
+
 class Shelf extends Component {
     populateShelf = (shelf) => {
         const shelfContent = this.props.books.filter((b) => (
