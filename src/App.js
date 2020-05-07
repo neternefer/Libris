@@ -1,7 +1,9 @@
 import React from 'react'
 import './App.css'
 import * as BooksApi from './BooksAPI'
+import { Route } from 'react-router-dom'
 import Shelf from './Shelf'
+import Search from './Search'
 
 
 class BooksApp extends React.Component {
@@ -45,9 +47,11 @@ class BooksApp extends React.Component {
                             update={this.updateBooks}/>
                         ))}
                     </div>
-                    <div className="open-search">
-                        <button>Add a book</button>
-                    </div>
+                    <Route exact path='/search' render={() => (
+                        <div className="open-search">
+                            <Search books={this.state.books}/>
+                        </div>
+                    )}/>
                 </div>
             </div>
         )
