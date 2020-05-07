@@ -8,6 +8,7 @@ class Search extends Component {
     }
 
     handleChange = (e) => {
+        e.persist()
         this.setState(() => ({
             search: e.target.value
         }))
@@ -16,8 +17,8 @@ class Search extends Component {
     render() {
         return (
             <div className="search-books">
-                <SearchQuery className="search-books-bar" handleChange={this.handleChange}/>
-                <SearchResult className="search-books-results" books={this.props.books} search={this.state.search}/>
+                <SearchQuery className="search-books-bar" update={this.updateBooks} handleChange={this.handleChange}/>
+                <SearchResult className="search-books-results" update={this.updateBooks} books={this.props.books} search={this.state.search}/>
             </div>
         )
     }

@@ -6,8 +6,8 @@ class SearchQuery extends Component {
         return (
             <div>
                 <Link to='/' className="close-search" />
-                <input className="search-books-input-wrapper" value={this.state.search}
-                 onChange={this.handleChange}></input>
+                <input className="search-books-input-wrapper" value={this.props.search}
+                 onChange={this.props.handleChange}></input>
             </div>
         )
     }
