@@ -16,10 +16,9 @@ class Shelf extends Component {
                 <h2 className="bookshelf-title">{this.props.header}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.populateShelf(this.props.name).map((book) => (
+                        {this.populateShelf(this.props.name[0]).map((book) => (
                             <li key={book.id}>
-                                <Book book={book} update={this.props.update}
-                            />
+                                <Book book={book} books={this.props.books} update={this.props.update}/>
                             </li>
                         ))}
                     </ol>

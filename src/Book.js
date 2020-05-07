@@ -2,20 +2,42 @@ import React, { Component } from 'react'
 import Move from './Move'
 import * as BooksApi from './BooksAPI'
 
-/** <Book book={book} update={this.props.update} */
+
 class Book extends Component {
     state = {
         shelf: ''
     }
 
     changeShelf = (e) => {
-        BooksApi.update(this.props.book, e.target.value)
+        const newShelf = e.target.value;
+        BooksApi.update(this.props.book, newShelf)
         .then((book) => {
             this.setState(() => ({
                 shelf: book.shelf
             }))
         })
-       //update func should go here
+        .then(() => {
+            const newBooks = this.updateBooks(this.props.book.id, newShelf)
+            this.props.update(newBooks)
+        })
+    }
+
+    updateBooks = (bookId, newShelf) => {
+        const updatedBooks = this.props.books;
+        for(const book in updatedBooks) {
+            if(updatedBooks[book].id === bookId) {
+                updatedBooks[book].shelf = newShelf
+            }
+        }
+        return updatedBooks
+    }
+
+    checkProperty = (property) => {
+        if(property) {
+            return property
+        } else {
+            return ''
+        }
     }
 
     render() {
@@ -23,13 +45,15 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover"
-                        style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}>
-                    </div>
+                    {this.checkProperty(book.imageLinks.smallThumbnail)
+                    ? <div className="book-cover" style={{width: 128, height: 193,
+                        backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>
+                    : <div className="book-cover"></div>
+                    }
                     <Move changeShelf={this.changeShelf} book={book} />
                 </div>
-                <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.autors}</div>
+                <div className="book-title">{this.checkProperty(book.title)}</div>
+                <div className="book-authors">{this.checkProperty(book.authors.toString())}</div>
             </div>
         )
     }
