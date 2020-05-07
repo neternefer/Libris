@@ -3,6 +3,7 @@ import './App.css'
 import * as BooksApi from './BooksAPI'
 import Shelf from './Shelf'
 
+
 class BooksApp extends React.Component {
     state = {
         books: []
@@ -43,6 +44,9 @@ class BooksApp extends React.Component {
                             books={this.state.books}
                             update={this.updateBooks}/>
                         ))}
+                    </div>
+                    <div className="open-search">
+                        <button>Add a book</button>
                     </div>
                 </div>
             </div>
