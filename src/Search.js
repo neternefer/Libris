@@ -17,8 +17,8 @@ class Search extends Component {
     render() {
         return (
             <div className="search-books">
-                <SearchQuery className="search-books-bar" update={this.updateBooks} handleChange={this.handleChange}/>
-                <SearchResult className="search-books-results" update={this.updateBooks} books={this.props.books} search={this.state.search}/>
+                <SearchQuery update={this.props.update} handleChange={this.handleChange}/>
+                <SearchResult className="search-books-results" update={this.props.update} books={this.props.books} search={this.state.search}/>
             </div>
         )
     }

@@ -20,6 +20,9 @@ class Book extends Component {
             const newBooks = this.updateBooks(this.props.book.id, newShelf)
             this.props.update(newBooks)
         })
+        .catch((error) => {
+            console.log('Error: ', error)
+        })
     }
 
     updateBooks = (bookId, newShelf) => {
